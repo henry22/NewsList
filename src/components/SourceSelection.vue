@@ -30,16 +30,17 @@ export default {
     sourceChanged: function(event) {
       for (var i=0; i<this.sources.length; i++) {
         if (this.sources[i].id == event.target.value) {
-          this.source = this.sources[i]
+          this.source = this.sources[i];
         }
       }
+      this.$emit('sourceChanged', event.target.value);
     }
   },
   created: function() {
     this.$http.get('https://newsapi.org/v1/sources?language=en')
               .then(response => {
-                this.sources = response.data.sources
-              })
+                this.sources = response.data.sources;
+              });
   }
 }
 </script>
