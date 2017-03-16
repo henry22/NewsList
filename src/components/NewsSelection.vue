@@ -36,25 +36,9 @@ export default {
       newsSources: 'newsSources',
       newsSource: 'newsSource'
     })
-    // newsSources() {
-    //   return this.$store.getters.newsSources
-    // },
-    // newsSource() {
-    //   return this.$store.getters.newsSource
-    // }
   },
   created: function() {
     this.$store.dispatch('getNews')
-    // this.$http.get('https://newsapi.org/v1/sources?language=en')
-    //           .then(response => {
-    //             this.$store.state.sources = response.data.sources;
-    //           });
-    // axios.get('https://newsapi.org/v1/sources?language=en')
-    //   .then(function(res) {
-    //   })
-    //   .catch(function(err) {
-    //     console.log(err)
-    //   })
   }
 }
 
