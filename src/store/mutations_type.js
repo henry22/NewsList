@@ -1,0 +1,3 @@
+export const GET_NEWS = 'GET_NEWS'
+export const GET_NEWS_SOURCES = 'GET_NEWS_SOURCES'
+export const GET_NEWS_ARTICLES = 'GET_NEWS_ARTICLES'

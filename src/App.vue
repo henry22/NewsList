@@ -1,35 +1,23 @@
 <template>
   <div class="container" id="app">
-    <SourceSelection v-on:sourceChanged="sourceChanged"></SourceSelection>
-    <Newslist v-bind:source="source"></Newslist>
+    <NewsSelection></NewsSelection>
+    <Newslist></Newslist>
   </div>
 </template>
 
 <script>
-import SourceSelection from './components/SourceSelection'
+import NewsSelection from './components/NewsSelection'
 import Newslist from './components/Newslist'
 
 export default {
-  name: 'app',
   components: {
-    SourceSelection,
+    NewsSelection,
     Newslist
-  },
-  data () {
-    return {
-      source: ''
-    }
-  },
-  methods: {
-    sourceChanged: function (source) {
-      this.source = source
-    }
   }
 }
 </script>
 
-<style>
-#app {
-  padding-top: 20px;
-}
+<style lang="sass">
+#app
+  padding-top: 20px
 </style>

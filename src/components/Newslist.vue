@@ -2,19 +2,19 @@
   <div class="newslist">
     <div class="container">
       <ul class="media-list">
-        <li class="media" v-for="article in articles">
+        <li class="media" v-for="newsArticle in newsArticles">
           <div class="media-left">
-            <a v-bind:href="article.url" target="_blank">
-              <img class="media-object" v-bind:src="article.urlToImage">
+            <a :href="newsArticle.url" target="_blank">
+              <img class="media-object" :src="newsArticle.urlToImage">
             </a>
           </div>
 
           <div class="media-body">
             <h4 class="media-heading">
-              <a v-bind:href="article.url" target="_blank">{{article.title}}</a>
+              <a :href="newsArticle.url" target="_blank">{{newsArticle.title}}</a>
             </h4>
-            <h5><i>by {{article.author}}</i></h5>
-            <p>{{article.description}}</p>
+            <h5><i>by {{newsArticle.author}}</i></h5>
+            <p>{{newsArticle.description}}</p>
           </div>
         </li>
       </ul>
@@ -23,41 +23,38 @@
 </template>
 
 <script>
-  export default {
-    name: 'newslist',
-    props: ['source'],
-    data () {
-      return {
-        articles: []
-      }
-    },
-    methods: {
-      updateSource: function (source) {
-        this.$http.get('https://newsapi.org/v1/articles?source=' + source + '&apiKey=ac11d5186d284152bd7271c2f707af78')
-                  .then(response => {
-                    this.articles = response.data.articles;
-                  });
-      }
-    },
-    created: function () {
-      this.updateSource(this.source);
-    },
-    watch: {
-      source: function (val) {
-        this.updateSource(val);
-      }
+import {mapGetters} from 'vuex'
+
+export default {
+  name: 'newslist',
+  watch: {
+    'newsSource': function() {
+      this.updateSource();
     }
+  },
+  methods: {
+    // ...mapActions([
+    //   'updateSource'
+    // ])
+    updateSource: function() {
+      this.$store.dispatch('getNewsArticles', this.newsSource)
+    }
+  },
+  computed: {
+    ...mapGetters({
+      newsArticles: 'newsArticles',
+      newsSource: 'newsSource'
+    })
   }
+}
 </script>
 
-<style scoped>
-  .media-object {
-    width: 128px;
-    padding: 10px;
-  }
+<style lang="sass" scoped>
+.media-object
+  width: 128px
+  padding: 10px
 
-  .media {
-    border-top: 1px solid lightgrey;
-    padding-top: 20px;
-  }
+.media
+  border-top: 1px solid lightgrey
+  padding-top: 20px
 </style>
