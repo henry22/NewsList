@@ -12,12 +12,6 @@
         <h6>{{newsSource.description}}</h6>
         <a :href="newsSource.url" class="btn btn-primary" target="_blank">Go To {{newsSource.name}} Website</a>
       </div>
-      <!-- <ul>
-        <li v-for="source in sources">
-          {{source}}
-        </li>
-      </ul>
-      <button type="button" @click="sourceChanged('haha')">click me</button> -->
     </div>
   </div>
 </template>

@@ -31,11 +31,3 @@ export const getNewsArticles = ({commit}, state) => {
       })
   )
 }
-
-
-/*
-export const actionDecrease = ({ commit }) => {
-  console.log('actionDecrease');
-  commit(types.DECREASE);
-}
-*/
