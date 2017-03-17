@@ -4,7 +4,7 @@
       <h2><span class="glyphicon glyphicon-list-alt"></span> News List</h2>
       <h4>Select News source</h4>
 
-      <select class="form-control" @change="getselectedSources(e)">
+      <select class="form-control" @change="selectedSourceChanged">
         <option :value="selectedSource.id" v-for="selectedSource in selectedSources">{{selectedSource.name}}</option>
       </select>
 
@@ -20,14 +20,19 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  methods: {
+    selectedSourceChanged(e) {
+      this.$store.dispatch('getSelectedSources', e.target.value)
+    }
+  },
   // methods: {
-  //   selectedSourceChanged(e) {
-  //     this.$store.dispatch('getselectedSources', e.target.value)
-  //   }
+  //   sourceChanged(e) {
+  //     getSelectedSources(e.target.value)
+  //   },
+  //   mapActions([
+  //     'getSelectedSources'
+  //   ])
   // },
-  methods: mapActions([
-    'getselectedSources'
-  ]),
   computed: {
     ...mapGetters({
       selectedSources: 'selectedSources',

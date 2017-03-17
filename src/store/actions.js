@@ -15,7 +15,7 @@ export const getNews = ({commit}) => {
     })
 }
 
-export const getselectedSources = ({commit}, source) => {
+export const getSelectedSources = ({commit}, source) => {
   console.log(source)
   commit('GET_NEWS_SOURCES', source)
   // console.log(e)
