@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   methods: {
@@ -25,14 +25,6 @@ export default {
       this.$store.dispatch('getSelectedSources', e.target.value)
     }
   },
-  // methods: {
-  //   sourceChanged(e) {
-  //     getSelectedSources(e.target.value)
-  //   },
-  //   mapActions([
-  //     'getSelectedSources'
-  //   ])
-  // },
   computed: {
     ...mapGetters({
       selectedSources: 'selectedSources',

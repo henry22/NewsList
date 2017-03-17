@@ -33,9 +33,6 @@ export default {
     }
   },
   methods: {
-    // ...mapActions([
-    //   'updateSource'
-    // ])
     updateSource: function() {
       this.$store.dispatch('getNewsArticles', this.selectedSource)
     }
