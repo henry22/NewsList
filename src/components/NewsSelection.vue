@@ -4,31 +4,34 @@
       <h2><span class="glyphicon glyphicon-list-alt"></span> News List</h2>
       <h4>Select News source</h4>
 
-      <select class="form-control" @change="newsSourceChanged">
-        <option :value="newsSource.id" v-for="newsSource in newsSources">{{newsSource.name}}</option>
+      <select class="form-control" @change="getselectedSources(e)">
+        <option :value="selectedSource.id" v-for="selectedSource in selectedSources">{{selectedSource.name}}</option>
       </select>
 
-      <div v-if="newsSource">
-        <h6>{{newsSource.description}}</h6>
-        <a :href="newsSource.url" class="btn btn-primary" target="_blank">Go To {{newsSource.name}} Website</a>
+      <div v-if="selectedSource">
+        <h6>{{selectedSource.description}}</h6>
+        <a :href="selectedSource.url" class="btn btn-primary" target="_blank">Go To {{selectedSource.name}} Website</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  methods: {
-    newsSourceChanged(event) {
-      this.$store.dispatch('getNewsSources', event.target.value)
-    }
-  },
+  // methods: {
+  //   selectedSourceChanged(e) {
+  //     this.$store.dispatch('getselectedSources', e.target.value)
+  //   }
+  // },
+  methods: mapActions([
+    'getselectedSources'
+  ]),
   computed: {
     ...mapGetters({
-      newsSources: 'newsSources',
-      newsSource: 'newsSource'
+      selectedSources: 'selectedSources',
+      selectedSource: 'selectedSource'
     })
   },
   created: function() {

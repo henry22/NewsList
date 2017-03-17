@@ -28,7 +28,7 @@ import {mapGetters} from 'vuex'
 export default {
   name: 'newslist',
   watch: {
-    'newsSource': function() {
+    'selectedSource': function() {
       this.updateSource();
     }
   },
@@ -37,13 +37,13 @@ export default {
     //   'updateSource'
     // ])
     updateSource: function() {
-      this.$store.dispatch('getNewsArticles', this.newsSource)
+      this.$store.dispatch('getNewsArticles', this.selectedSource)
     }
   },
   computed: {
     ...mapGetters({
       newsArticles: 'newsArticles',
-      newsSource: 'newsSource'
+      selectedSource: 'selectedSource'
     })
   }
 }

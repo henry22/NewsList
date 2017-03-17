@@ -1,3 +1,3 @@
-export const newsSources = state => { return state.newsSources }
-export const newsSource = state => { return state.newsSource }
+export const selectedSources = state => { return state.selectedSources }
+export const selectedSource = state => { return state.selectedSource }
 export const newsArticles = state => { return state.newsArticles }
