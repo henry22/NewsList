@@ -17,12 +17,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   methods: {
     selectedSourceChanged(e) {
       this.$store.dispatch('getSelectedSources', e.target.value)
+      //this.$store.dispatch('getNewsArticles', e.target.value)
     }
   },
   computed: {

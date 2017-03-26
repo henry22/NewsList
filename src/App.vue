@@ -9,6 +9,7 @@
 import NewsSelection from './components/NewsSelection'
 import Newslist from './components/Newslist'
 
+
 export default {
   components: {
     NewsSelection,

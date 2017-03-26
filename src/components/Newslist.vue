@@ -1,57 +1,58 @@
 <template>
   <div class="newslist">
     <div class="container">
-      <ul class="media-list">
-        <li class="media" v-for="newsArticle in newsArticles">
-          <div class="media-left">
-            <a :href="newsArticle.url" target="_blank">
-              <img class="media-object" :src="newsArticle.urlToImage">
-            </a>
+      <div v-masonry transition-duration="0.3s" item-selector=".item" origin-left="true">
+          <div v-masonry-tile class="item" v-for="newsArticle in newsArticles">
+             <Cards :article="newsArticle"></Cards>
           </div>
-
-          <div class="media-body">
-            <h4 class="media-heading">
-              <a :href="newsArticle.url" target="_blank">{{newsArticle.title}}</a>
-            </h4>
-            <h5><i>by {{newsArticle.author}}</i></h5>
-            <p>{{newsArticle.description}}</p>
-          </div>
-        </li>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
+import {masonry, masonryTile} from 'vue-masonry'
+
+import Vue from 'vue'
+import Cards from './Cards'
+
 
 export default {
   name: 'newslist',
   watch: {
     'selectedSource': function() {
-      this.updateSource();
+      //this.updateSource();
+      this.getNewsArticles(this.selectedSource)
     }
   },
+  // methods: {
+  //   updateSource: function() {
+  //     this.$store.dispatch('getNewsArticles', this.selectedSource)
+  //   }
+  // },
   methods: {
-    updateSource: function() {
-      this.$store.dispatch('getNewsArticles', this.selectedSource)
-    }
+    ...mapActions([
+      'getNewsArticles'
+    ])
   },
   computed: {
     ...mapGetters({
       newsArticles: 'newsArticles',
       selectedSource: 'selectedSource'
     })
+  },
+  components: {
+    Cards
   }
 }
+
+
+
 </script>
 
 <style lang="sass" scoped>
-.media-object
-  width: 128px
-  padding: 10px
-
-.media
-  border-top: 1px solid lightgrey
-  padding-top: 20px
+  .item
+    width: 50%
 </style>
